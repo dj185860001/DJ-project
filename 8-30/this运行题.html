@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+	let obj = {
+		fn:function(){
+			console.log(this);
+		}
+	}
+	//通过obj的属性fn取出函数之后直接执行了函数，函数中的this指向的是obj，
+	//fn是通过obj调用的，this就指向obj
+	obj.fn();
+	//取出obj的fn对应的函数，赋值给了一个变量
+
+
+	let f = obj.fn;
+	/*
+		相当于：
+			let f = function(){
+			console.log(this)
+			}
+
+	*/
+	f();//直接调用函数，this=>window
+
+	</script> 
+</body>
+</html>

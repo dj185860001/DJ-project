@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+	 function People(name,age,sex){
+		this.name = name;
+		this.age = age;	
+		this.sex = sex;
+	}
+	People.prototype.say = function(){
+		console.log('我会说话')
+	}
+	 function Coder(name,age,sex,money){
+		People.call(this,name,age,sex);
+		this.money = money;
+	}
+	Coder.prototype = new People;
+
+	Coder.prototype.Coding = function(){
+		console.log("我会敲代码");	
+	}
+
+	let c = new Coder('leo',30,"nan",10000);
+
+	console.log(c);
+
+	console.log(c.say);
+
+	console.log(People.prototype);
+	</script>
+	
+</body>
+</html>

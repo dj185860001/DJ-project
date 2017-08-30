@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+	/*
+		包装对象
+		String();
+		Number();
+		Boolean();
+		对象都是数据，数据不一定逗是对象
+		'miaov'
+		1
+		true
+		只有对象才有属性
+	*/
+
+	let str = 'miaov';//只是值，不是对象
+	str.slice(1);//当调用slice时候，内部会把str包装成一个对象，调用slice方法
+	//使用包装完对象之后，立马就销毁了
+	str.abc = 10;
+	console.log(str.abc)
+	let str2 = new String('miaov');
+	console.log(str2.slice)
+	console.log(str2.valueOf());
+	</script> 
+</body>
+</html>

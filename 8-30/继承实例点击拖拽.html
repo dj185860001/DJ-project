@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		div {
+				width: 100px;
+				height: 100px;
+				background: red;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+	</style>
+	<script src="./drag.js"></script>
+	<script>
+		class CreateDiv extends Drag{
+			constructor(options){
+				super();
+				this.defaults = {
+					width:100,
+					height:100,
+					background:'red'
+				}
+				Object.assign(this.defaults,options)
+				this.init();
+			}
+			init(){
+				this.newDiv = this.CreateNewDiv();
+				this.setStyle();
+				document.body.appendChild(this.newDiv);
+			}
+			CreateNewDiv(){
+				let newDiv = document.createElement('div');
+				return newDiv;
+			}
+			setStyle(){
+				this.newDiv.style.cssText = `
+				width:${this.defaults.width}px;
+				height:${this.defaults.height}px;
+				background:${this.defaults.background};
+				position:absolute;
+				left:0;
+				top:0;
+				`
+			}
+		}
+	</script>
+</head>
+<body>
+	<input type="button" id="btn" value="创造div">
+	<script>
+	btn.onclick = function(){
+		let c = new CreateDiv({
+			background:'pink',
+			height:150,
+			width:150
+		})
+		c.draginit(c.newDiv);
+	}
+
+	</script>
+</body>
+</html>

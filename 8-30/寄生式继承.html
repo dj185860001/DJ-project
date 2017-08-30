@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+	function People(name){
+		this.name = name;
+	}
+	People.prototype.say = function(){
+		console.log('我会说话')
+	}
+	function Coder(name,money){
+		//继承父类构造函数中的属性
+		People.call(this,name);
+		this.money = money;
+	}
+	//拷贝继承
+	//Object.assign(Coder.prototype,People.prototype)
+	//中间的一个类
+	function F(){};
+	F.prototype = People.prototype;// 把父类的原型给到中间类
+	Coder.prototype = new F;// 改写子类的原型为中间类生成的对象
+	Coder.prototype.constructor = Coder;// 把子类的constructor指回到子类
+	//寄生式继承
+	//Coder.prototype = People.prototype;
+
+	Coder.prototype.coding = function(){
+		console.log('我会哈哈哈')
+	}
+	let c = new Coder('leo',10000)
+	console.log(People.prototype);
+	console.log(c.say)
+	</script> 
+</body>
+</html>

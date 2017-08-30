@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+	/*
+		使用关键字class来定义类：
+		class 类名{
+				//创建对象有属性
+				constructor(name){
+	
+				}
+				共享的方法，不能定义共享的属性
+				say(){
+	
+				}
+				say2(){
+	
+				}
+			}
+	*/
+
+	class People{
+		constructor(name){
+			this.name = name;
+		}
+		say(){
+			console.log('我会说话')
+		}
+	}
+
+	console.dir(People)
+	let p1 = new People('leo')
+	let p2 = new People()
+	console.log(p1);
+	console.log(p2);
+
+
+	//Coder要有People的属性和方法
+	/*
+		子类必须在constructor方法中调用super方法，否则新建实例时会报错。这是因为子类没有自己的this对象，而是继承父类的this对象，然后对其进行加工。如果不调用super方法，子类就得不到this对象。
+	*/
+	class Coder extends People{
+		constructor(name,money){
+			//super作为函数，就是构造函数
+			super(name);
+			this.money = money;
+		}
+		coding(){
+			console.log('我会编程')
+		}
+	}
+	//当类不传值的时候，类中可以不用写constructor
+	let c = new Coder('leo',10000);
+	console.log(c);
+	</script> 
+</body>
+</html>

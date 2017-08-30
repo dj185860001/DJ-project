@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+	//父类
+	function People(name,age,sex){
+		this.name = name;
+		this.age = age;
+		this.sex = sex;
+	}
+	People.prototype.say = function(){
+		console.log('我会说话');
+	}
+	//子类,程序员
+	function coder(name,age,sex,money){
+		/*
+			把people中构造函数中的属性，放在coder的this上
+			把people中的this指向改变为coder中的对象
+		*/
+		People.call(this,name,age,sex)
+		this.money = money;
+	}
+	//让coder.prototype拥有People.prototype上的方法
+	//拷贝继承
+	//把父类原型上的属性拷贝到子级原型上
+	// for(var attr in People.prototype){
+	// 	if(People.prototype.hasOwnProperty(attr)){
+	// 		Coder.prototype[attr] = People.prototype[attr];
+	// 	}
+	// }
+	Object.assign(Coder.prototype,People.prototype)
+
+	coder.prototype.coding = function(){
+		console.log('我会敲代码');
+	}
+
+	function Uier(name,age,sex,beauty){
+		People.call(this,name,age,sex)
+		this.beauty = beauty;
+	}
+
+
+	Uier.prototype.usePs = function(){
+		console.log('我会用PS');
+	}
+
+	let c = new coder('leo',30,'男',10000)
+	let c1 = new Uier('leso',18,'女','pretty')
+	console.log(c)
+	console.log(c.name)
+	console.log(c1)
+	</script> 
+</body>
+</html>

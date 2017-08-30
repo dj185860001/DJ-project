@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		div {
+			width: 100px;
+			height: 100px;
+			background: red;
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
+	</style>
+	<script>
+	//当在多个原型上的方法，使用同一个属性的时候，通常是把这个属性放在对象上
+	//可拖拽的构造函数
+	function Drag(dragbox){
+		this.dragbox = dragbox;
+	}
+	Drag.prototype = {
+		constructor:drag;
+		init(){
+			this.dragbox.onmousedown = this.downFn.bind(this)
+		}
+		downFn(){
+			console.log(this);
+		}
+	}
+	// Drag.prototype.init = function(){
+	// 	//开始给可拖拽的元素绑定事件处理
+	// 	//this =>隐式obj
+	// 	this.dragbox.onmousedown = this.downFn.bind(this)
+	// }
+	// Drag.prototype.downFn = function(){
+	// 	//this =>元素
+	// 	console.log(this);
+	// }
+	</script>
+</head>
+<body>
+	<div id="box"></div>
+	<script>
+	let d = new Drag(box);
+	d.init();
+		/*
+			1.new Drag 之后，会在Drag函数内部创建一个对象(隐式的obj)
+			2.Drag函数中的this =>隐式的obj
+			3.把隐式obj返回出来
+			4.把隐式obj赋值给变量d
+			5.d.init()调用，init函数中this =>隐式obj
+		*/
+
+	/*
+		new 调用函数做的事情
+		1.在函数的内部创建隐式的对象(添加属性的)
+		2.函数中的this=>隐式的对象(通过this给对象添加属性)
+		3.执行函数
+		4.把隐式的对象返回出去
+
+
+
+	*/
+	</script>
+</body>
+</html>
