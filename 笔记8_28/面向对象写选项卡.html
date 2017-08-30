@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#box div,#box2 div{
+			width: 100px;
+			height: 100px;
+			background: red;
+			display: none;
+		}
+		.yellow {
+			background: yellow;
+		}
+	</style>
+	<script>
+		function Tab(parent){
+			// 使用var，let私有变量
+			this.inputs = parent.querySelectorAll("input");
+			this.divs = parent.querySelectorAll("div");
+			this.timer = null;
+			//this.init();
+		}
+		Tab.prototype.init = function (){
+			let that = this;
+			for(var i = 0; i< this.inputs.length; i++){
+				this.inputs[i].index = i;
+				this.inputs[i].onclick = function(){
+					for(var i = 0; i< that.inputs.length; i++){
+						that.inputs[i].className = '';
+						that.divs[i].style.display = 'none';
+						}
+						// this => input
+						this.className = 'yellow';	
+						// this.index => input.index
+						that.divs[this.index].style.display = 'block';
+					 
+				}
+				console.log(this);
+			}
+		}
+
+		Tab.prototype.autoPlay = function(){
+			let n= 0;
+			this.timer = setInterval(() => {
+				n++;
+				if(n > this.inputs.length -1){
+					n = 0;
+				}
+				for( var i = 0; i < this.inputs.length; i++ ){
+					this.inputs[i].className = '';
+					this.divs[i].style.display = 'none';
+				}
+				this.inputs[n].className = 'yellow';
+				this.divs[n].style.display = 'block';
+			},1000)	
+		}
+
+		Tab.prototype.stopPlay = function (){
+				clearInterval(this.timer)	
+			};
+
+	</script>
+</head>
+<body>
+	<div id="box">
+		<input class="yellow" type="button" value="按钮1" />
+		<input type="button" value="按钮2" />
+		<input type="button" value="按钮3" />
+		<div style="display: block;">按钮1</div>
+		<div>按钮2</div>
+		<div>按钮3</div>
+	</div>
+	<div id="box2">
+		<input class="yellow" type="button" value="按钮1" />
+		<input type="button" value="按钮2" />
+		<input type="button" value="按钮3" />
+		<div style="display: block;">按钮1</div>
+		<div>按钮2</div>
+		<div>按钮3</div>
+	</div>
+	<input type="button" id="btn1" value="让第一个自动播放" />
+		<input type="button" id="btn2" value="停止第二个自动播放" />
+	<script>
+	let box1 =  document.getElementById('box');
+	let box2 =  document.getElementById('box2');
+
+	let t1 = new Tab(box1);
+
+	console.log(t1);
+	t1.init();
+
+	let t2 = new Tab(box2);
+
+	t2.init();
+	//第二个自动播放
+	t2.autoPlay();
+	
+	// 让第一个自动播放
+	btn1.onclick  =function (){
+		t1.autoPlay();	
+	}
+
+	// 停止第二个自动播放
+	btn2.onclick = function (){
+		t2.stopPlay()	
+	}
+
+			
+	</script>
+</body>
+</html>

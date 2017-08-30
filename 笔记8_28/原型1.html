@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+	/*
+		把一类对象共享的属性和方法，放在原型上
+		prototype 原型
+		每一个函数都拥有一个属性叫prototype，就是原型
+		通过这个函数创建出来的一类对象拥有的共享属性和方法，都放在这个函数的原型上
+		原型对应的值是一个对象(默认是通过Object创建出来的)
+	*/
+	function Car(color,lunzi){
+		this.color = color;
+		this.lunzi = lunzi;
+	}
+	//内部原型对象的值：Car.prototype = {};
+	Car.prototype.run = function(){
+		console.log('我被开走了')
+	}
+	Car.prototype.city = '北京';
+	console.dir(Car.prototype);
+	let c1 = new Car('red',1);
+	let c2 = new Car('blue',2);
+	console.log(c1.run);
+	console.log(c2.run);
+	console.log(c1.run === c2.run)
+	//通过Array创建的数组，都拥有原型上的方法
+	console.log(Array.prototype)
+	//给数组扩展一个abc的方法， 尽量要避免这样做
+	Array.prototype.abc = function(){
+		//alert('我的扩展的abc')
+	}
+	let arr = [];
+	arr.abc(123);
+
+		// 数组上的__proto__指向的是创建数组的Array构造函数的原型
+		console.log(arr1.__proto__ === Array.prototype);
+	</script>
+</body>
+</html>

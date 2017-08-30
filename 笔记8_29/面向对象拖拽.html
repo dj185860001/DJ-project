@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		div {
+			width: 150px;
+			height: 150px;
+			background:blue;
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
+	</style>
+	<script>
+		function Drag(DragBox){
+			this.DragBox = DragBox;
+			this.disX = 0;
+			this.disY = 0;
+		}
+
+		Drag.prototype.init = function(){
+			//this 指向的是t1
+			this.DragBox.onmousedown = this.downFn.bind(this);//改变this指向
+		}
+		Drag.prototype.downFn = function(ev){
+			//this指向的是元素 触发事件的元素
+			this.disX = ev.clientX - this.DragBox.offsetLeft;
+			this.disY = ev.clientY - this.DragBox.offsetTop;
+			document.onmousemove = this.moveFn.bind(this);
+			document.onmouseup = this.upFn.bind(this);
+		}
+
+		Drag.prototype.moveFn = function(ev){
+			this.DragBox.style.left = ev.clientX - this.disX + 'px';
+			this.DragBox.style.top = ev.clientY - this.disY + 'px';
+		}
+		Drag.prototype.upFn = function(ev){
+			document.onmousemove = document.onmouseup = null;
+		}
+	</script> 
+</head>
+<body>
+	<div id="box1"></div>
+	<div id="box2"></div>
+	<script>
+	let box1 = document.getElementById('box1')
+	let box2 = document.getElementById('box2')
+	let t1 = new Drag(box1);
+	t1.init();
+	let t2 = new Drag(box2);
+	t2.init();
+	</script>
+</body>
+</html>

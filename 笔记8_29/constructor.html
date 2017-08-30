@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+	/*
+		constructor
+		函数的原型是一个对象，对象初始的时候就有一个属性为construcor
+		constructor的值指向的是拥有这个原型的函数
+	*/
+	function abc(){
+
+	}
+	function Info(){
+
+	}
+
+	// Info.prototype.constructor = abc;
+	// console.log(Info.prototype.constructor)
+	// let i = new Info;
+	// let i2 = new Info;
+	// console.log(i.constructor === Info);
+	// console.log(i2.constructor === Info)
+	//constructor 可以被改写，所以判断一个对象属于哪个类型有问题
+	//Array.prototype.constructor = Object;
+
+	let arr = [];
+	let obj = {};
+
+	console.log(arr.constructor === Array);
+	console.log(arr.constructor === Object);
+
+	// 通常这样写
+	// 原型重新赋了一个新的对象，手动的把constructor改回来
+	Info.prototype = {
+		constructor:Info,
+		abc1(){},
+		abc2(){}
+	}
+	console.log(Info.prototype);
+	let i = new Info;
+	console.log(i.abc1)
+	console.log(i.constructor);
+	</script>
+</body>
+</html>

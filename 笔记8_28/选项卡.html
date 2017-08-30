@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#box div,#box2 div{
+			width: 100px;
+			height: 100px;
+			background: red;
+			display: none;
+		}
+		.yellow {
+			background: yellow;
+		}
+	</style>
+	<script>
+	function tab(parent,isAutoPlay){
+		let inputs = parent.querySelectorAll('input');
+		let divs = parent.querySelectorAll('div');
+		for(var i = 0; i< inputs.length;i++){
+			inputs[i].index = i;
+			inputs[i].onclick = function(){
+				for(var i = 0; i< inputs.length;i++){
+					inputs[i].className = '';
+					divs[i].style.display = 'none';
+				}
+				this.className = 'yellow';
+				divs[this.index].style.display = 'block'
+			}
+		}
+		//自动播放
+		if(isAutoPlay === 'autoPlay'){
+			let n = 0;
+			setInterval(function(){
+				n++;
+				if(n>inputs.length-1){
+					n= 0;
+				}
+				for(var i = 0; i< inputs.length;i++){
+					inputs[i].className = '';
+					divs[i].style.display = 'none';
+				}
+				inputs[n].className = 'yellow';
+				divs[n].style.display = 'block'
+			},1000)
+		}
+	}
+	</script>
+</head>
+<body>
+
+	<div id="box">
+		<input class="yellow" type="button" value="按钮1" />
+		<input type="button" value="按钮2" />
+		<input type="button" value="按钮3" />
+		<div style="display: block;">按钮1</div>
+		<div>按钮2</div>
+		<div>按钮3</div>
+	</div>
+	<div id="box2">
+		<input class="yellow" type="button" value="按钮1" />
+		<input type="button" value="按钮2" />
+		<input type="button" value="按钮3" />
+		<div style="display: block;">按钮1</div>
+		<div>按钮2</div>
+		<div>按钮3</div>
+	</div>
+	<script>
+	//点击切换
+	let box1 = document.getElementById('box')
+	let box2 = document.getElementById('box2')
+	tab(box1)
+	tab(box2,'autoPlay','stopPlay')
+	//让第二个选项卡自动播放
+	</script>
+</body>
+</html>

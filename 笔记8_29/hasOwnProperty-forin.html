@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body> 
+	<script>
+	/*
+		对象.hasOwnProperty(属性名)
+			判断属性名是不是对象自身的属性
+			并不会找原型链上的
+		for in 遍历一个对象上的属性
+			去找原型链上的属性
+	*/
+	let obj = {
+		a:1
+	}
+	function Info(){
+					
+	}
+
+	Info.prototype.abc = 10;
+
+
+	let i = new Info();
+
+	i.a = 10;
+
+	console.log( i.hasOwnProperty('abc') );
+	console.log( i.hasOwnProperty('a') );
+
+
+	//--------------forin--------------------
+	Object.prototype.miaov = 'ketang';
+	let obj1 = {
+		a:1
+	}
+	console.log(obj1)
+
+	// 1. 并没有把__proto__遍历出来
+	for( var attr in obj){
+		if(obj.hasOwnProperty(attr)){
+			console.log(attr);
+		}
+		
+	}
+	</script>
+</body>
+</html>

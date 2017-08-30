@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		/*
+			通过一个构造函数可以创建一个对象
+			通过这个构造函数创建的一类对象拥有共享的属性和方法
+			把共享的方法放在函数的原型上 函数.prototype
+			当要访问函数原型的方法适合(对象和原型直接有什么联系？)
+		*/
+		//console.log(Array.prototype)
+		//let arr1 = new Array();
+		//arr1._proto_ = {a:1}//可以改写但不要那样做
+		//arr._proto_ = Array.prototype
+		//console.log(arr1.a)
+
+
+		Array.prototype.push = function(){
+			console.log('改写了')
+		}
+		let arr = new Array();
+
+		arr.push = function(){
+			console.log('我自己的')
+		}
+		console.log(arr.push)
+//---------------------------------------------------------------------------
+		Object.prototype.abc = '我是Obejct上的';
+		Array.prototype.abc = '我是原型上的';
+		let arr1 = new Array();
+		arr1.abc = '我自己的'
+		console.log(arr.abc)
+//----------------------------------------------------------------------------\
+
+
+
+		function Info(name){
+			this.name = name;
+		}
+		Info.prototype.abc = function(){
+			console.log('我是ABC')
+		}
+		/*
+			创建对象的时候，可以初始化一些值
+			每个人的信息不是共享的，创建对象的时候就可以得到这些信息
+		*/
+		let i = new Info('leo')
+		let i2 = new Info('momo');
+		console.log(i)
+		console.log(i2)
+
+
+
+		 
+	</script>
+</body>
+</html>

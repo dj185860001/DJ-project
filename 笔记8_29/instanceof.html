@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+	/*
+		instanceof
+		二元运算符 
+			对象 instanceof 函数
+			描述有问题：
+				简单理解：运算一下这个函数是不是对象的构造函数
+				是 结果为true
+				不是 结果为false
+			正确描述（待定）：
+			运算一下函数的原型是不是在这这个对象的原型链上
+	*/
+	function Info(){
+
+	};
+	Info.prototype = {
+		abc1(){},
+		abc2(){}
+	}
+	let i = new Info;
+
+	console.log(i instanceof Info);//true
+	console.log(i instanceof Array);//false
+	console.log(i instanceof Object);//true，其实不严谨
+
+	/*
+		判断类型
+		 typeof
+		 	数组和对象不能分辨出来
+		constructor
+			容易被改写
+		instanceof
+			找原型链上的函数
+		Object.prototype.tostring
+		几乎完美
+
+	*/
+//-----------------------typeof---------------------------------
+console.log(typeof []);//object
+console.log(typeof {});//object
+
+// ------------instanceOf-----------------
+console.log([] instanceof Array);//true
+console.log([] instanceof Object);//true
+console.log(Object.prototype);
+
+//alert({}.toString()); // 把对象转成字符串 toString()  [object Object]
+
+console.log(Array.prototype);
+// 把数组中每一项通过,连接起来，返回的是字符串
+//alert([1,2,3,4].toString());
+
+
+
+// ------------Object.prototype.toString-----------------
+
+// 把toString中this指向数组
+alert(Object.prototype.toString.call([]).slice(8,-1) === "Array");// [object Array]
+alert(Object.prototype.toString.call(1))
+alert(Object.prototype.toString.call('abc'))
+alert(Object.prototype.toString.call(new Date()))
+alert(Object.prototype.toString.call(Math))
+
+alert({}.toString())
+
+
+
+
+	</script> 
+</body>
+</html>

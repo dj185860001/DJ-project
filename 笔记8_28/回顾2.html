@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+	function Info(name){
+		this.name = name;
+	}
+	Info.prototype.run = function(){
+		console.log(this)//调用run的对象
+		console.log(this.name)
+		this.abc = 'custom'
+	}
+	//创建的对象，实例，实例对象
+	let i= new Info('leo');
+	let i2= new Info('momo');
+	// 那个对象调用了方法，函数中的this就指向那个对象
+	console.log(i.run());
+	console.log(i2.run());
+	
+	// 对象上有一个__proto__属性，通过这个属性让对象和原型建立联系
+
+	// 当i调用run方法的时候，首先先从自身找，自身没有，找构造这个i对象构造函数的原型上找，没找到，找创建原型对象的构造函数的原型上找，一直找Object.prototype为止
+	console.log(i);
+
+
+
+
+	let arr = [1,2,3];
+	let arr2 = ["a"];
+	arr.push('miaov'); // push方法指向的是arr
+	arr2.push('miaov'); // push方法指向的是arr2
+	</script>
+</body>
+</html>

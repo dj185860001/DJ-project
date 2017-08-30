@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+	function Info(name){
+		//内建一个隐式的对象
+		//this指向对象，this就是这个对象 this = {}；
+		this.n = name;
+		//把内建的对象返回
+	}
+
+	// 通过这个构造函数创建的对象共享属性和方法，放在原型上
+	// 共享的属性或方法之创建一次，节省内存空间
+	//Info.prototype = {}
+
+	Info.prototype.run = function(){
+		console.log('123')
+		console.log(this.name)
+	}
+	Info.prototype.run2 = function(){
+		console.log('1222223')
+	}
+
+
+	//创建的对象，实例，实例对象
+	let i = new Info('leo');
+	let i2 = new Info('leo1111111111');
+	//使用new调用后赋值给变量i，这个i和函数中的this指向的是同一个对象
+	console.log(i);
+	console.log(i.run())
+	</script>
+</body>
+</html>

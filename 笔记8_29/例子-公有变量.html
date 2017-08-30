@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style></style>
+	<script>
+		let inputs = null;
+		function Tab(parent){
+			this.inputs = parent.querySelectorAll('input');
+		}
+
+		Tab.prototype.init = function (){
+			let that = this;
+			for( var i = 0; i < this.inputs.length; i++ ){
+				
+				this.inputs[i].onclick = function (){
+					// inputs是第二个box中的input
+					for( var i = 0; i < that.inputs.length; i++ ){
+						that.inputs[i].style.background = '';	
+					}
+
+					this.style.background = 'red';	
+				}
+			}
+		}
+	</script> 
+</head>
+<body>
+	<div id="box1">
+		<input type="button" value="按钮1">
+		<input type="button" value="按钮2">
+		<input type="button" value="按钮3">
+	</div>
+	<div id="box2">
+		<input type="button" value="按钮1">
+		<input type="button" value="按钮2">
+		<input type="button" value="按钮3">
+	</div>
+	<script>
+		let box1 = document.querySelector("#box1");
+		let box2 = document.querySelector("#box2");
+		let t1 = new Tab(box1);
+		t1.init();
+		let t2 = new Tab(box2);
+		t2.init();
+	</script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body> 
+	<script>
+	//统计学员的信息 姓名 性别 年龄 来自哪里
+	//创建一类东西，这一类包含属性和方法
+	//工厂方法
+	function studentInfo(name,age,sex){
+		let obj = new Object();
+		obj.name = name;
+		obj.age = age;
+		obj.sex = sex;
+		obj.coding = function(){
+			console.log("我要嘿嘿嘿")
+		}
+		return obj;
+	}
+	let user1 = studentInfo('leo',30,'男')
+	let user2 = studentInfo('leo2',30,'男')
+	let user3 = studentInfo('leo3',30,'男')
+	let user4 = studentInfo('leo4',30,'男')
+	let user5 = studentInfo('leo5',30,'男')
+
+
+	console.log(user1)
+
+	//生成一辆汽车
+	function createCar(color,lunzi){
+		let obj = new Object();
+		obj.color = color;
+		obj.lunzi = lunzi;
+		return obj;
+	}
+	let car1 = createCar('red',4)
+	let car2 = createCar('blue',4)
+	let car3 = createCar('yellow',4)
+	let car4 = createCar('pink',4)
+	console.log(car1)
+
+
+	//这两个对象的类型区分不开，都是通过object来创建的
+	console.log(user1.constructor)
+	console.log(car1.constructor)
+
+
+	let arr = new Array();//数组
+	let d = new Date();//日期对象
+	console.log(arr);
+	console.log(d)
+
+
+
+
+	</script>
+</body>
+</html>

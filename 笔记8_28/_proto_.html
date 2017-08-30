@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head> 
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body> 
+	<script>
+	/*
+		把一类对象共享的属性和方法，放在原型上
+		prototype 原型
+		每一个函数都拥有一个属性叫prototype，就是原型
+		通过这个函数创建出来的一类对象拥有的共享的属性和方法，都放在这个函数的原型上
+		原型对应的值是一个对象(默认是通过Object创建出来的)
+		通过一个构造函数创建的对象和构造的原型有关系呢？
+		_proto_
+		每一个对象都有一个_proto_属性，值指向的是创建这个对象的构造函数的原型
+		原型链
+		一个对象查找一个属性的一套规则
+		当查找一个属性，先从自身查找，继续找构造函数的原型
+		直到找到Object.prototype为止，没找到就返回undefined
+
+	*/
+	Object.prototype.run ='456';
+	function Car(color,lunzi){
+		this.color = color;
+		this.lunzi = lunzi;
+	}
+	//原型是函数上的属性
+	/*
+	Car.prototype.run = function(){
+	console.log('我被开走了')
+	}
+	*/
+	Car.prototype.city = '北京';
+	console.log('原型',Car.prototype)
+	let c1 = new Car('red',2)
+	console.log(c1);
+	console.log(c1.run)
+	console.log( c1.__proto__.__proto__ );
+	</script>
+</body>
+</html>

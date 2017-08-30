@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+	function Info(a,b,c){
+		/*
+			内部分为两个部分
+			1.准备
+			内部创建对象
+			AO = {
+				arguments:[],
+				a:'',
+				b:'',
+				c:''
+				abc:undefined,
+				fn:function(){},
+				this:null
+			}
+			2.执行代码 变量对象变成活动对象
+			VO ={
+				arguments:[1,2,3],
+				a:1,
+				b:2,
+				c:3,
+				abc:10,
+				fn:function(){};
+				this:window
+			}
+		*/
+		console.log(abc);
+		var abc = 10;
+		console.log(abc);
+		function fn(){
+			console.log(123)
+		}
+		console.log(456)
+	}
+
+	Info(1,2,3);
+	</script>
+</body>
+</html>

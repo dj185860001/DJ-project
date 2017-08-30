@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+	/*
+		构造函数也就是一个普通的函数，作为构造函数，约定:作为构造函数，首字母大写
+		构造函数:通过这个函数创建对象
+		对象 普通对象{}
+		new 操作符
+		调用函数，创建对象
+		步骤：
+			1.会在构造函数的内部创建一个空对象
+			2.函数内部的this指向这个空对象(this就代表了这个对象)
+			3.执行函数，添加属性
+			4.返回这个对象
+		显式的使用return
+			return后后面的值是一个简单类型的值，还return的是内部创建的对象
+			rerurn后后面的值是一个对象类型的值，返回的是return后面的这个对象
+
+
+	*/
+
+	function Car(color,lunzi){
+		this.color = color;
+		this.lunzi = lunzi;
+	}
+	/*
+	let c1 = new Car('red',4)
+	console.log(c1.constructor)
+	let arr = new Array(1,2,3,4)
+	console.log(arr.constructor)*/
+	Car();//直接调用，函数中的this指向window，函数内部就是向window添加属性
+	let c1 = new Car('red',4)
+	console.log(c1)
+
+	//下面的数组都是通过Array创建的，这些数组都是一类
+	let arr1 =[];
+	let arr2 = [];
+	console.log(arr1===arr2)
+	</script>
+</body>
+</html>
