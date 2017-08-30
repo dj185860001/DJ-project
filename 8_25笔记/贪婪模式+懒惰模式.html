@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+	/*
+		贪婪模式
+			尽可能匹配多的
+		懒惰模式
+			尽可能匹配少的
+		开启懒惰模式
+			?
+	*/
+	let str = 'a123ca45abc6cmiaov';
+	//规则：a开始c结束，中间是数字字母下划线
+	let re = /a\w+c/g;
+	let re1 = /a\w+?c/g;
+	console.log(str.match(re));//贪婪模式
+	console.log(str.match(re1));//懒惰模式
+	</script>
+</body>
+</html>

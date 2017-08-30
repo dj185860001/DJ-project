@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head> 
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="box">
+		<!-- <span>姓名</span>
+		<span>年龄</span>
+		<span>性别</span> -->
+	</div>
+	<script>
+	/*
+		模板引擎
+			数据和模板结合在一起
+		语法
+			输出东西{{}}
+			
+	*/
+	function render(){
+		let re = /\{\{(.+?)\}\}/g;
+		return html.replace(re,($0,$1) =>{
+			console.log($0);
+			console.log($1);
+			return data[$1];
+		})
+	};
+
+	let data = {
+		name : 'leo',
+		age:30,
+		sex:"男"
+	}
+	let html =`
+		<span>姓名:{{name}}</span>
+		<span>年龄:{{age}}</span>
+		<span>性别:{{sex}}</span>
+	`
+	let renderHTML = render(html,data);
+	box.innerHTML = renderHTML;
+	</script>
+</body>
+</html>

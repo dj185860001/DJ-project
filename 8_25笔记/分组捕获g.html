@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		/*
+			()分组
+			在正则表达式中，称之为子项表达式或子项
+			如果正则中有分组，在macth的表现
+				正则有g的不捕获分组的信息
+				正则没有g的，捕获分组信息
+			?: 捕获分组信息
+
+		*/
+		let str = 'a1casfqa12c3c'
+		//规则：a开始c结束，中间一个数字
+		let re = /a(\d)c/g;
+		let re1 = /a(\d)c/;
+		console.log(str.match(re));//不捕获分组
+		console.log(str.match(re1));//捕获分组
+
+		str.replace(re1,(...data) =>{
+			/*
+				第一个参数，是正则完整匹配到的字符
+				正则中有分组，从第二个参数开始就是匹配到分组的字符
+				倒数第二个参数是完整匹配的字符的下标
+				倒数第一个参数是要搜索的字符串本身
+
+
+			*/
+			console.log(data);
+		})
+
+
+
+		let id = '#btn';
+		let re2 = /^#(\w+)/
+		id.replace(re2,(...data) =>{
+			console.log(data)
+		})
+
+
+		let str1 = 'a1ca20ac312545a66c523sdsfa56c'
+		//规则：a开始c结束，中间数字是1或者56或者66
+		let re3 = /a(?:1|56|66)c/g
+		str1.replace(re3,(...data) =>{
+			console.log(data)
+		})
+	</script>
+</body>
+</html>

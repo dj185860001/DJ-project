@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+	/*
+		\d代表的一个数字
+		\D代表的一个非数字
+		\s代表的一个空格
+		\S代表的一个非空格
+		\w字母、数字、_
+		\W非字母、数字、_
+		\b单词边界
+		\B非单词边界
+			一个\w的左边或右边不是一个\w就是一个边界符
+		. 任意字符 除了换行符 \n
+		匹配 . [] {} () \ 使用转移符 \ 消除原有的意义
+	*/
+
+	//封装一个方法去除字符串前后空格
+	let str = '       miao sd asf        ';
+	//匹配到前后空格，替换成空字符串
+	function trim(str){
+		let re = /^\s+|\s+$/g;//^\s是让前面变成空格 \s+$变成空格
+		//let re = /\s/g; //去除所有的空格
+		return str.replace(re,'');
+	}
+	console.log(trim(str));
+	console.log(trim('sfas     asd da        das'));
+
+
+
+	//-------------------------------------------------
+	let str2 = 'sda**&^%$czxcbjs1_23912471!#@_%^[]';
+	let re2 = /\W+/g;
+	let re1 = /\w+/g;
+	console.log(str2.match(re1));
+	console.log(str2.match(re2));
+
+	//------------单词边界-----------
+	let str3 = 'wo love you ni like mi ma?heihehi 100%'
+	let re3 = /\b/g;
+	console.log(str3.replace(re3,"|"));
+
+	//-------------------任意.----------------------------
+	let str4 = 'hdfauqw -10231092\n 098542bsdfbq-3 134#%$^*092-038'
+	let str5 = "通知: \nmiaovketang"
+	let re4 = /.|\n/g;
+	let re5 = /./g;
+	console.log(str4.replace(re4,'1'));
+	console.log(str5.replace(re5,'1'));
+
+	let str6 = 'acbdsa.1(dasd qw)2\\3vew';
+	let re6 = /\.|\(|\)|\\/g;
+	console.log(str6.replace(re6,'1'));
+
+
+	</script>
+	
+</body>
+</html>

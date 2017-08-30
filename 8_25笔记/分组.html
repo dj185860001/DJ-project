@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head> 
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+	/*
+		\d代表的是一个数字
+		\D代表的是非数字
+	*/
+		let str = 'mi123sda1239+-=-0@#213&:\'wey-dfas'
+		let re = /\D+/g;
+		console.log(str.match(re))//把非数字的打出来
+
+		//例子：xxxx年xx月xx日
+		//简便的方式
+		//规则：一堆数字，一堆非数字，一堆数字，一堆非数字，一堆数字，一堆非数字
+		let time1 = '2017-08-25wdqeqw';
+		let time2 = '2017-+#$%08-qwdd25wrv tw';
+		let time3 = '2017;|08,.ppsda25sdazc,';
+		let re1 = /(\d+)\D+(\d+)\D+(\d+)\D+/g;
+
+		time1.replace(re1,($0,$1,$2,$3) =>{
+			console.log($0);
+			console.log($1);
+			console.log($2);
+			console.log($3);
+			//要求得到ruturn xxxx +'年'+xx +'月'+ xx + '日'
+		})
+		let newStr = time1.replace(re1,($0,$1,$2,$3) =>{
+			return $1+'年'+$2+'月'+$3+'日'
+		});
+		console.log(newStr)
+		let newStr2 = time2.replace(re1,($0,$1,$2,$3) =>{
+			return $1+'年'+$2+'月'+$3+'日'
+		});
+		console.log(newStr2)
+		let newStr3 = time3.replace(re1,($0,$1,$2,$3) =>{
+			return $1+'年'+$2+'月'+$3+'日'
+		});
+		console.log(newStr3)
+
+
+		//----------------------------------------------------------
+		
+
+	</script> 
+</body>
+</html>
